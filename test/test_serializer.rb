@@ -69,6 +69,19 @@ module RubyPsigate
       @result = Serializer.new(hash)
       assert_equal expectation, @result.to_xml
     end
+    
+    def test_create_markup_from_an_array_of_hash_with_each_array_element_having_its_own_embedded_options
+      expectation = "<Item><Name>Mercedes Benz</Name><Price>30000.00</Price><Option><model>sports</model><color>black</color></Option></Item><Item><Name>BMW</Name><Price>25000.00</Price><Option><model>luxury</model><color>red</color></Option></Item>"
+      hash = {
+        :Item => [
+          { :Name => "Mercedes Benz", :Price => "30000.00", :Option => { :model => "sports", :color => "black" } },
+          { :Name => "BMW", :Price => "25000.00", :Option => { :model => "luxury", :color => "red" } }
+        ]
+      }
+
+      @result = Serializer.new(hash)
+      assert_equal expectation, @result.to_xml
+    end
   
   end
 end
