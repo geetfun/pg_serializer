@@ -1,6 +1,7 @@
 = pg_serializer
 
-Description goes here.
+Dependency gem for Ruby Psigate libraries
+Used for converting hashes to xml markup for Psigate API calls
 
 == Contributing to pg_serializer
  
@@ -14,6 +15,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Simon Chiu. See LICENSE.txt for
-further details.
+Copyright (c) 2010 Simon Chiu. See LICENSE.txt for further details.
 

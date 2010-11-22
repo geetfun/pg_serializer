@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "pg_serializer"
   gem.homepage = "http://github.com/drchiu/pg_serializer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Converts hashes to XML for Psigate API calls}
+  gem.description = %Q{Converts hashes to XML for Psigate API calls}
   gem.email = "skhchiu@gmail.com"
   gem.authors = ["Simon Chiu"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
