@@ -37,6 +37,38 @@ module RubyPsigate
       @result = Serializer.new(hash, :header => true)
       assert_equal expectation, @result.to_xml
     end
+    
+    def test_creates_complicated_markup
+      expectation = "<Order><StoreID>teststore</StoreID><Passphrase>test1234</Passphrase><Subtotal>10.00</Subtotal><PaymentType>CC</PaymentType><CardAction>0</CardAction><CardNumber>4111111111111111</CardNumber><CardExpMonth>02</CardExpMonth><CardExpYear>15</CardExpYear><CardIDNumber>3422</CardIDNumber></Order>"
+      hash = { 
+        :Order => {
+          :StoreID        => "teststore",
+          :Passphrase     => "test1234",
+          :Subtotal       => "10.00",
+          :PaymentType    => "CC",
+          :CardAction     => "0",
+          :CardNumber     => "4111111111111111",
+          :CardExpMonth   => "02",
+          :CardExpYear    => "15",
+          :CardIDNumber   => "3422"
+        }
+      }
+      @result = Serializer.new(hash)
+      assert_equal expectation, @result.to_xml
+    end
+    
+    def test_creates_markup_from_array_of_hash_under_same_parent_element
+      expectation = "<Item><Name>Mercedes Benz</Name><Price>30000.00</Price></Item><Item><Name>BMW</Name><Price>25000.00</Price></Item>"
+      hash = {
+        :Item => [
+          { :Name => "Mercedes Benz", :Price => "30000.00"},
+          { :Name => "BMW", :Price => "25000.00" }
+        ]
+      }
+      
+      @result = Serializer.new(hash)
+      assert_equal expectation, @result.to_xml
+    end
   
   end
 end
