@@ -83,5 +83,12 @@ module RubyPsigate
       assert_equal expectation, @result.to_xml
     end
   
+    def test_create_complicated_markup
+      expectation = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Request><CID>1000001</CID><UserID>teststore</UserID><Password>testpass</Password><Action>AMA01</Action><Account><Name>Home Simpson</Name><Address1>1234 Evergrove Drive</Address1><City>Toronto</City><Province>ON</Province><Postalcode>M2N3A3</Postalcode><Country>CA</Country><Phone>416-111-1111</Phone><Email>homer@simpsons.com</Email><CardInfo><CardHolder>Homer Simpsons</CardHolder><CardNumber>4111111111111111</CardNumber><CardExpMonth>03</CardExpMonth><CardExpYear>20</CardExpYear></CardInfo></Account></Request>"
+      hash = {:Request=>{:CID=>"1000001", :UserID=>"teststore", :Password=>"testpass", :Action=>"AMA01", :Account=>{:Name=>"Home Simpson", :Address1=>"1234 Evergrove Drive", :City=>"Toronto", :Province=>"ON", :Postalcode=>"M2N3A3", :Country=>"CA", :Phone=>"416-111-1111", :Email=>"homer@simpsons.com", :CardInfo=>{:CardHolder=>"Homer Simpsons", :CardNumber=>"4111111111111111", :CardExpMonth=>"03", :CardExpYear=>"20"}}}}
+      @result = Serializer.new(hash, :header => true)
+      assert_equal expectation, @result.to_xml
+    end
+  
   end
 end
