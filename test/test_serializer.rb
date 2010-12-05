@@ -89,6 +89,19 @@ module RubyPsigate
       @result = Serializer.new(hash, :header => true)
       assert_equal expectation, @result.to_xml
     end
+    
+    def test_nil
+      expectation = "<Item><Name>Mercedes Benz</Name><Price>25000.00</Price></Item><Item><Name>BMW</Name></Item>"
+      hash = {
+        :Item => [
+          { :Name => "Mercedes Benz", :Price => "25000.00" },
+          { :Name => "BMW", :Price => nil }
+        ]
+      }
+      
+      @result = Serializer.new(hash)
+      assert_equal expectation, @result.to_xml
+    end
   
   end
 end

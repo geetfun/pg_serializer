@@ -26,6 +26,8 @@ module RubyPsigate
               @builder << Serializer.new(val).to_xml
             end
           end
+        when NilClass
+          # do nothing
         else
           raise ArgumentError, "Unknown class: #{value.class}"
         end
